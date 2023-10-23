@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, send_from_directory
 import os
-import zipfile
 import requests
 from flask_frozen import Freezer
 app = Flask(__name__)
