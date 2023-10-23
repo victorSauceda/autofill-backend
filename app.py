@@ -112,6 +112,5 @@ def upload_files():
     '''
 
 
-if __name__ == "__main__":
-    freezer = Freezer(app)
-    app.run()
+# if __name__ == "__main__":
+#     app.run()
