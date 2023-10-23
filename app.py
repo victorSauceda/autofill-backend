@@ -1,14 +1,14 @@
 from flask import Flask, render_template, request, send_from_directory
 import os
-import requests
-app = Flask(__name__)
+import zipfile
 
+from auto_fill_pdf import autofill_pdf
+
+
+app = Flask(__name__)
 
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'csv', 'pdf', 'json'}
-
-# replace with your API endpoint
-API_ENDPOINT_URL = "https://autofill-backend.onrender.com/"
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -45,23 +45,9 @@ def upload_files():
             pdf_file.save(pdf_filename)
             config_file.save(config_filename)
 
-            # Calling the external API to process the files
-            response = requests.post(
-                API_ENDPOINT_URL,
-                files={
-                    'csv_file': open(csv_filename, 'rb'),
-                    'pdf_file': open(pdf_filename, 'rb'),
-                    'config_file': open(config_filename, 'rb')
-                }
-            )
-
-            if response.status_code == 200:
-                zip_filename = os.path.join(
-                    app.config['UPLOAD_FOLDER'], 'result.zip')
-                with open(zip_filename, 'wb') as f:
-                    f.write(response.content)
-            else:
-                return 'Error processing the files with the API'
+            # Use the function to autofill the PDF, which now directly returns the zip file path
+            zip_filename = autofill_pdf(
+                csv_filename, pdf_filename, config_filename)
 
             # Return the zipped file for download
             return send_from_directory(directory=app.config['UPLOAD_FOLDER'], path=os.path.basename(zip_filename), as_attachment=True)
@@ -111,5 +97,5 @@ def upload_files():
     '''
 
 
-# if __name__ == "__main__":
-#     app.run()
+if __name__ == "__main__":
+    app.run(debug=True)
