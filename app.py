@@ -1,6 +1,5 @@
-from flask import Flask, render_template, request, send_from_directory
+from flask import Flask, request, send_from_directory
 import os
-import zipfile
 
 from autofill_pdf import autofill_pdf
 
