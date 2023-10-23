@@ -1,9 +1,8 @@
 from flask import Flask, render_template, request, send_from_directory
 import os
 import requests
-from flask_frozen import Freezer
 app = Flask(__name__)
-freezer = Freezer(app)
+
 
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'csv', 'pdf', 'json'}
