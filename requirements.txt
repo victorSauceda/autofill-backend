@@ -4,3 +4,4 @@ pdfrw==0.4
 pandas==1.3.5
 jsonschema==3.2.0
 gunicorn==20.1.0
+Frozen-Flask==0.18
