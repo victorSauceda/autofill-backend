@@ -44,7 +44,7 @@ The JSON configuration file should map the CSV field names to the PDF form field
 }
 ```
 
-In this example, `csv_field_name1` and `csv_field_name2` are field names in the CSV file, and `pdf_field_name1` and `pdf_field_name2`` are field names in the PDF form. The required field indicates whether the field is required. If a required field is empty in the CSV file, the row will be skipped.
+In this example, `csv_field_name1` and `csv_field_name2` are field names in the CSV file, and `pdf_field_name1` and `pdf_field_name2` are field names in the PDF form. The required field indicates whether the field is required. If a required field is empty in the CSV file, the row will be skipped.
 
 ## Web App
 
